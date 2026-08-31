@@ -1,26 +1,76 @@
 @import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
+@theme {
+  --color-desk: #f2efea;
+  --color-ink: #1b4d4a;
+  --color-note-yellow: #f5d976;
+  --color-note-mint: #a8d5c8;
+  --color-note-coral: #f0a697;
+  --color-note-blue: #a9cce3;
+  --color-accent: #e08e45;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  --font-handwritten: var(--font-handwritten), cursive;
+  --font-sans: var(--font-sans), sans-serif;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-desk-dark: #0e1412;
+  --color-card-dark: #171f1d;
+  --color-ink-dark: #a8d5c8;
+  --color-text-dark: #c9d4d2;
+  --color-accent-dark: #4fd1c5;
+  --color-border-dark: #2a3532;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-handwritten: var(--font-handwritten), cursive;
+  --font-sans: var(--font-sans), sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-desk);
+  transition: background-color 0.7s ease;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  z-index: 0;
+}
+
+.dark body {
+  background-color: var(--color-desk-dark);
+}
+.dark body::before {
+  opacity: 0.05;
+}
+@keyframes wave {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  15% {
+    transform: rotate(14deg);
+  }
+  30% {
+    transform: rotate(-8deg);
+  }
+  45% {
+    transform: rotate(14deg);
+  }
+  60% {
+    transform: rotate(-4deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+  85% {
+    transform: rotate(1deg);
+  }
+}
+
+.animate-wave {
+  animation: wave 2.2s ease-in-out infinite;
+  animation-delay: 1.2s; /* waits until entrance finishes */
 }
