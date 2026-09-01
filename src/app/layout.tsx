@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Caveat, Inter } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/context/ThemeContext'
+import { SmoothScrollProvider } from '@/components/effects/SmoothScrollProvider'
 
 const handwritten = Caveat({
   subsets: ['latin'],
@@ -21,17 +22,20 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout ({
-  children
+  children,
+  modal
 }: {
   children: React.ReactNode
+  modal: React.ReactNode
 }) {
   return (
     <html lang='en'>
-      <body
-        className={`${handwritten.variable} ${sans.variable} font-sans  px-0 md:px-6 lg:px-12 2xl:px-24 bg-background dark:bg-background-dark text-ink dark:text-ink-dark`}
-      >
+      <body className={`${handwritten.variable} ${sans.variable} font-sans`}>
         <ThemeProvider>
-          {children}
+          <SmoothScrollProvider>
+            {children}
+            {modal}
+          </SmoothScrollProvider>
         </ThemeProvider>
       </body>
     </html>

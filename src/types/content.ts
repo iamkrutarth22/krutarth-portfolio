@@ -6,19 +6,34 @@ export interface HeroContent {
 }
 
 export interface CareerEntry {
-  index: string;       // "001", "002"
+  index: string;
   company: string;
   role: string;
   detail: string;
   period: string;
-  tech: string[]; // List of technologies used in the role
+  tech: string[];
 }
 
+// export interface ProjectCaseStudy {
+//   slug: string;
+//   name: string;
+//   summary: string;
+//   architecture: string;
+//   images?: string[];
+//   tag: "Frontend" | "Fullstack";
+//   color: "white" | "blue" | "mint" | "coral" | "yellow";
+// }
 
-export interface Project {
-  id: string;
+export interface ProjectCaseStudy {
+  slug: string;
   name: string;
+  subtitle: string;       // short italic tagline, e.g. "Writing & Diagramming Workspace"
+  summary: string;
+  architecture: string;
+  images?: string[];
   tag: "Frontend" | "Fullstack";
-  description: string;
-  color: "white" | "blue";
+  accentColor: string;    // Tailwind bg class for the top bar, e.g. "bg-blue-500"
+  techStack: string[];
+  githubUrl: string;
+  liveUrl?: string;       // omit if there's no live demo yet
 }

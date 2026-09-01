@@ -6,7 +6,7 @@ import { ThemeToggle } from '@/components/ui/ThemeToggle'
 export default function Home () {
   return (
     <main>
-      <div className='py-3 absolute right-1 px-2 flex justify-end  z-50  '>
+      <div className='py-3 fixed right-1 px-2 flex justify-end  z-50  '>
         <ThemeToggle />
       </div>
       <Hero />
