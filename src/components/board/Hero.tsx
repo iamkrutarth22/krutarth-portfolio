@@ -53,7 +53,7 @@ export function Hero () {
   return (
     <div
       className='relative min-h-[95vh] flex flex-col items-center justify-center
-                bg-desk dark:bg-desk-dark overflow-hidden px-6 transition-colors duration-700'
+                overflow-hidden px-6 transition-colors duration-700'
     >
       <div className='flex justify-between '>
         <section

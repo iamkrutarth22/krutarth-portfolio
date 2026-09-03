@@ -79,10 +79,7 @@ export function Projects () {
   }, [])
 
   return (
-    <section
-      ref={sectionRef}
-      className='relative h-screen overflow-hidden '
-    >
+    <section ref={sectionRef} className='relative h-screen overflow-hidden scroll-mt-20 '>
       <span className='absolute top-8 left-8 font-handwritten  text-md tracking-widest  text-ink/60 dark:text-accent-dark/80 uppercase z-20'>
         Projects
       </span>
@@ -106,7 +103,7 @@ export function Projects () {
                   transform: `translateY(${(i % 3) * 18}px)`
                 }}
                 onMouseEnter={e => {
-                  e.currentTarget.style.scale = '1.3'
+                  e.currentTarget.style.scale = '1.1'
                   e.currentTarget.style.zIndex = '50'
                 }}
                 onMouseLeave={e => {

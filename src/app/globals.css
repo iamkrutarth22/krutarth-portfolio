@@ -39,6 +39,16 @@ body::before {
   z-index: 0;
 }
 
+:root {
+  --spark-core: var(--color-accent);
+  --spark-glow: color-mix(in srgb, var(--color-accent) 55%, white 45%);
+}
+
+.dark {
+  --spark-core: var(--color-accent-dark);
+  --spark-glow: color-mix(in srgb, var(--color-accent-dark) 55%, white 45%);
+}
+
 .dark body {
   background-color: var(--color-desk-dark);
 }
@@ -73,4 +83,28 @@ body::before {
 .animate-wave {
   animation: wave 2.2s ease-in-out infinite;
   animation-delay: 1.2s; /* waits until entrance finishes */
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari, Opera */
+}
+
+html {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+html::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari, Opera */
+}
+
+@property --spark-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
 }

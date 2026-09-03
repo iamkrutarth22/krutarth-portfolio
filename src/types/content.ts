@@ -27,13 +27,33 @@ export interface CareerEntry {
 export interface ProjectCaseStudy {
   slug: string;
   name: string;
-  subtitle: string;       // short italic tagline, e.g. "Writing & Diagramming Workspace"
-  summary: string;
-  architecture: string;
+  summary: string;        // 1-2 lines, card + meta description
+  tagline?: string;        // short subtitle, you already show this in the modal (image 4)
+  sections: {               // structured write-up instead of one string
+    heading: string;
+    body: string;
+  }[];
+  tech: string[];           // formalize this — it's already rendering in your screenshot but isn't in the type
+  githubUrl?: string;
+  demoUrl?: string;
   images?: string[];
   tag: "Frontend" | "Fullstack";
-  accentColor: string;    // Tailwind bg class for the top bar, e.g. "bg-blue-500"
-  techStack: string[];
-  githubUrl: string;
-  liveUrl?: string;       // omit if there's no live demo yet
+  color: "white" | "blue" | "mint" | "coral" | "yellow";
+}
+
+export interface ContactLink {
+  label: string;
+  url: string;
+  icon: "github" | "linkedin" | "mail";
+}
+
+export interface ContactContent {
+  heading: string;
+  subtext: string;
+  links: ContactLink[];
+}
+
+export interface TechCategory {
+  category: string;
+  items: string[];
 }

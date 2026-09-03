@@ -30,7 +30,7 @@ export default function RootLayout ({
 }) {
   return (
     <html lang='en'>
-      <body className={`${handwritten.variable} ${sans.variable} font-sans`}>
+      <body className={`${handwritten.variable} ${sans.variable} font-sans overflow-y-auto scrollbar-hide`}>
         <ThemeProvider>
           <SmoothScrollProvider>
             {children}
