@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 import { StickyNote } from '../ui/StickyNote'
 import { Pin } from '../ui/Pin'
+import { techIconMap } from '@/lib/tech-icons'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -45,24 +46,25 @@ export function Technologies () {
   return (
     <section
       ref={sectionRef}
-      className='relative min-h-screen 
+      id='skills'
+      className='relative  min-h-screen 
                  px-6 md:px-16 py-24 transition-colors duration-700 scroll-mt-20'
     >
-      <span className='font-handwritten text-sm tracking-widest text-ink/60 dark:text-accent-dark/80 uppercase mb-2 block'>
+      <span className='font-handwritten pt-10 text-sm tracking-widest text-ink/60 dark:text-accent-dark/80 uppercase mb-2 block'>
         Technologies
       </span>
-      <h2 className='font-sans text-3xl md:text-4xl font-bold text-ink dark:text-ink-dark mb-12'>
+      <h2 className='font-handwritten text-3xl md:text-4xl font-bold text-ink dark:text-ink-dark mb-12'>
         Stuff I&apos;ve worked with
       </h2>
 
-      <div className='flex flex-wrap gap-x-10 gap-y-12 items-start'>
+      <div className='flex max-md:px-20 flex-wrap gap-x-3 gap-y-6 items-start'>
         {technologies.map((group, i) => (
           <div
             key={group.category}
             ref={el => {
               noteRefs.current[i] = el
             }}
-            className='w-72'
+            className='w-72 '
           >
             <StickyNote
               color={noteColors[i % noteColors.length]}
@@ -72,16 +74,25 @@ export function Technologies () {
               <h3 className='font-handwritten text-lg text-ink dark:text-neutral-900 underline mb-3'>
                 {group.category}
               </h3>
-              <div className='flex flex-wrap gap-1.5'>
-                {group.items.map(tech => (
-                  <span
-                    key={tech}
-                    className='text-[11px] font-mono px-2 py-1 rounded-full
-                 bg-black/5 dark:bg-black/10 text-ink dark:text-neutral-900'
-                  >
-                    {tech}
-                  </span>
-                ))}
+              <div className='grid grid-cols-3 gap-2'>
+                {group.items.map(tech => {
+                  const entry = techIconMap[tech]
+                  if (!entry) return null
+                  const { Icon, color } = entry
+                  return (
+                    
+                    <div
+                      key={tech}
+                      className='flex flex-col items-center gap-1 bg-white/60 
+                   rounded-lg py-2 px-1'
+                    >
+                      <Icon size={22} style={{ color }} />
+                      <span className='text-[10px] font-sans text-ink dark:text-neutral-900 text-center leading-tight'>
+                        {tech}
+                      </span>
+                    </div>
+                  )
+                })}
               </div>
             </StickyNote>
           </div>

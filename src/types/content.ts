@@ -1,8 +1,17 @@
+export interface HeroStat {
+  icon: "briefcase" | "map-pin" | "dot";
+  label: string;
+  sublabel: string;
+}
+
 export interface HeroContent {
   greeting: string;
   tagline: string;
   note: string;
   resumeUrl: string;
+  stats: HeroStat[];
+  photoCaption: string;
+  connectLabel: string; // "Let's Connect" button text — links to Contact
 }
 
 export interface CareerEntry {
@@ -51,6 +60,8 @@ export interface ContactContent {
   heading: string;
   subtext: string;
   links: ContactLink[];
+  availableFor: string[];
+  closingNote: string; // "Let's create something impactful!"
 }
 
 export interface TechCategory {

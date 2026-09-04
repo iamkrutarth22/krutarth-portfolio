@@ -9,9 +9,16 @@ import { CareerEntry } from "@/types/content";
 export const hero: HeroContent = {
   greeting: "Hey, I'm Krutarth 👋",
   tagline:
-    "Frontend-focused Full Stack Developer — React,Node.js,Next.js, TypeScript, PostgreSQL",
+    "Frontend-focused Full Stack Developer — React, Node.js, Next.js, TypeScript, PostgreSQL",
   note: "Currently building at a govtech company",
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "/resume/Krutarth_Haldankar_Resume.pdf",
+  // public\resume\Krutarth_Haldankar_Resume.pdf
+  connectLabel: "Let's Connect",
+  photoCaption: "Building with code. Solving real problems.",
+  stats: [
+    { icon: "briefcase", label: "2+ years", sublabel: "of experience" },
+    { icon: "dot", label: "Open to work", sublabel: "new opportunities" },
+  ],
 };
 
 export const career: CareerEntry[] = [
@@ -276,7 +283,7 @@ export const contact: ContactContent = {
   heading: "Let's build something",
   subtext: "Open to frontend and fullstack roles — reach out.",
   links: [
-    { label: "Email", url: "mailto:your-email@example.com", icon: "mail" },
+    { label: "Email", url: "mailto:iamkrutarth1234@gmail.com", icon: "mail" },
     {
       label: "GitHub",
       url: "https://github.com/iamkrutarth22",
@@ -284,10 +291,16 @@ export const contact: ContactContent = {
     },
     {
       label: "LinkedIn",
-      url: "https://linkedin.com/in/your-actual-handle",
+      url: "https://www.linkedin.com/in/krutarth-haldankar-541784214?utm_source=share_via&utm_content=profile&utm_medium=member_android",
       icon: "linkedin",
     },
   ],
+  availableFor: [
+    "Web Development",
+    "Fullstack Development",
+    "Freelance Projects",
+  ],
+  closingNote: "Let's create something impactful!",
 };
 
 export const technologies: TechCategory[] = [
@@ -300,12 +313,14 @@ export const technologies: TechCategory[] = [
     items: [
       "React",
       "Next.js",
+      "Angular",
       "Redux Toolkit",
       "React Query",
       "Tailwind CSS",
       "GSAP",
+      "Framer Motion",
       "Tiptap",
-      "Excalidraw",
+      "Vite",
     ],
   },
   {
@@ -314,11 +329,11 @@ export const technologies: TechCategory[] = [
   },
   {
     category: "Database & Infra",
-    items: ["PostgreSQL", "Neon", "Docker"],
+    items: ["PostgreSQL", "MySQL", "Neon DB", "Docker"],
   },
   {
     category: "Tooling",
-    items: ["Git", "GitHub Actions", "MSW", "ShadCN UI", "Figma"],
+    items: ["Git", "Railway", "Netlify", "Vercel", "ShadCN UI"],
   },
 ];
 

@@ -186,7 +186,7 @@ import { useTheme } from '@/context/ThemeContext'
 
 gsap.registerPlugin(ScrollTrigger)
 
-export function Career() {
+export function Career () {
   const sectionRef = useRef<HTMLElement>(null)
   const progressRef = useRef<HTMLDivElement>(null)
   const companyRefs = useRef<(HTMLDivElement | null)[]>([])
@@ -223,16 +223,16 @@ export function Career() {
           onEnterBack: () => setMode('dark'),
           onLeave: () => setMode('light'),
           onLeaveBack: () => setMode('light'),
-          onUpdate: (self) => {
+          onUpdate: self => {
             // Update progress bar
             gsap.to(progressRef.current, {
               scaleY: self.progress,
               duration: 0.1,
               ease: 'none',
-              overwrite: true,
+              overwrite: true
             })
-          },
-        },
+          }
+        }
       })
 
       companies.forEach((_, i) => {
@@ -245,7 +245,7 @@ export function Career() {
             y: -120,
             opacity: 0,
             duration: 0.9,
-            ease: 'power2.inOut',
+            ease: 'power2.inOut'
           },
           i
         )
@@ -258,7 +258,7 @@ export function Career() {
             y: 0,
             opacity: 1,
             duration: 0.9,
-            ease: 'power2.out',
+            ease: 'power2.out'
           },
           i - 0.15
         )
@@ -269,7 +269,7 @@ export function Career() {
           {
             opacity: 0,
             duration: 0.25,
-            ease: 'power1.in',
+            ease: 'power1.in'
           },
           i + 0.1
         )
@@ -278,7 +278,7 @@ export function Career() {
           {
             opacity: 1,
             duration: 0.25,
-            ease: 'power1.out',
+            ease: 'power1.out'
           },
           i + 0.2
         )
@@ -294,44 +294,45 @@ export function Career() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 transition-colors duration-700 scroll-mt-20"
+      id="experience"
+      className='relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 transition-colors duration-700 scroll-mt-20'
     >
       {/* ── Progress bar (left side) ── */}
-      <div className="absolute left-6 top-1/2 -translate-y-1/2 h-[70vh] w-[3px] bg-ink/10 dark:bg-white/10 rounded-full overflow-hidden z-20">
+      <div className='absolute left-2 top-1/2 -translate-y-1/2 h-1/5 w-[5px] bg-ink/10 dark:bg-white/10 rounded-full overflow-hidden z-20'>
         <div
           ref={progressRef}
-          className="w-full h-full bg-accent dark:bg-accent-dark origin-top"
+          className='w-full h-full bg-accent dark:bg-accent-dark origin-top'
         />
       </div>
 
       <span
-        className="absolute top-8 left-8 text-md font-handwritten tracking-widest
-                   text-ink/60 dark:text-accent-dark/80 uppercase"
+        className='absolute top-8 left-8 text-md font-handwritten tracking-widest pt-10
+                   text-ink/60 dark:text-accent-dark/80 uppercase'
       >
         WORK EXPERIENCE
       </span>
 
       {/* Company details */}
-      <div className="relative w-full max-w-2xl h-[28%] mb-8">
+      <div className='relative w-full max-w-2xl h-[28%] mb-8'>
         {career.map((entry, i) => (
           <div
             key={entry.index}
-            ref={(el) => {
+            ref={el => {
               companyRefs.current[i] = el
             }}
-            className="absolute inset-0 flex flex-col justify-center"
+            className='absolute inset-0 flex flex-col justify-center'
           >
-            <div className="rounded px-6 py-4 w-fit max-w-full">
-              <span className="font-mono text-lg text-accent dark:text-accent-dark mb-2 block">
+            <div className='rounded px-6 py-4 w-fit max-w-full'>
+              <span className='font-mono text-lg text-accent dark:text-accent-dark mb-2 block'>
                 {entry.index}
               </span>
-              <h2 className="font-sans text-5xl md:text-4xl font-semibold text-ink dark:text-ink-dark mb-1">
+              <h2 className='font-sans text-5xl md:text-4xl font-semibold text-ink dark:text-ink-dark mb-1'>
                 {entry.company}
               </h2>
-              <p className="font-handwritten text-lg text-ink dark:text-ink-dark mb-1">
+              <p className='font-handwritten text-lg text-ink dark:text-ink-dark mb-1'>
                 {entry.role}
               </p>
-              <span className="font-mono text-md text-ink dark:text-accent">
+              <span className='font-mono text-md text-ink dark:text-accent'>
                 {entry.period}
               </span>
             </div>
@@ -340,21 +341,21 @@ export function Career() {
       </div>
 
       {/* Sticky notes */}
-      <div className="relative w-full max-w-2xl h-[45%] flex justify-end">
+      <div className='relative w-full max-w-2xl h-[45%] flex justify-end'>
         {career.map((entry, i) => (
           <div
             key={entry.index}
-            ref={(el) => {
+            ref={el => {
               noteRefs.current[i] = el
             }}
-            className="absolute right-0 bottom-0 w-[70%]"
+            className='absolute right-0 bottom-0 w-[70%]'
           >
-            <StickyNote color="coral" rotate={4}>
-              <Pin color="bg-yellow-500" />
-              <h1 className="text-red-800 font-handwritten text-lg underline">
+            <StickyNote color='coral' rotate={4}>
+              <Pin color='bg-yellow-500' />
+              <h1 className='text-red-800 font-handwritten text-lg underline'>
                 responsibilities
               </h1>
-              <p className="font-handwritten text-lg text-ink dark:text-neutral-900">
+              <p className='font-handwritten text-lg text-ink dark:text-neutral-900'>
                 {entry.detail}
               </p>
             </StickyNote>
@@ -366,8 +367,6 @@ export function Career() {
     </section>
   )
 }
-
-
 
 // 'use client'
 

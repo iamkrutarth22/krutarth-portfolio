@@ -10,6 +10,13 @@ import { SplitText } from 'gsap/SplitText'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 import Image from 'next/image'
 import { ScrollCue } from '../ui/ScrollCue'
+import { Briefcase, MapPin, Heart } from 'lucide-react'
+
+const statIconMap = {
+  briefcase: Briefcase,
+  'map-pin': MapPin,
+  dot: null
+}
 
 export function Hero () {
   const sectionRef = useRef<HTMLElement>(null)
@@ -18,8 +25,11 @@ export function Hero () {
   const noteRef = useRef<HTMLDivElement>(null)
   const noteRef2 = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLAnchorElement>(null)
+  const statsRef = useRef<HTMLDivElement>(null)
+
   const reducedMotion = usePrefersReducedMotion()
 
+  const sparkRef2 = useRef<HTMLDivElement>(null)
   useEffect(() => {
     if (reducedMotion) return
 
@@ -47,7 +57,20 @@ export function Hero () {
         .from(buttonRef.current, { opacity: 0, y: 10, duration: 0.4 }, '-=0.2')
     }, sectionRef)
 
-    return () => ctx.revert()
+    const spark = sparkRef2.current
+
+    // Rotate the conic gradient continuously
+    const tween = gsap.to(spark, {
+      '--spark-angle': '360deg',
+      duration: 3.2,
+      ease: 'none',
+      repeat: -1
+    })
+
+    return () => {
+      ctx.revert()
+      tween.kill()
+    }
   }, [reducedMotion])
 
   return (
@@ -58,32 +81,74 @@ export function Hero () {
       <div className='flex justify-between '>
         <section
           ref={sectionRef}
+          id='home'
           className='relative min-h-[70vh] flex flex-col items-start justify-center px-6 md:px-16
-                  transition-colors duration-700 '
+                  transition-colors duration-700  scroll-mt-20'
         >
           {/* Main note card */}
-          <div
-            className='relative bg-white dark:bg-card-dark shadow-lg dark:shadow-black/40
+          <div className='relative w-full '>
+            <div
+              ref={sparkRef2}
+              className='absolute -inset-0.5 rounded-lg pointer-events-none'
+              style={{
+                background: `conic-gradient(
+      from var(--spark-angle, 0deg),
+      transparent 0%,
+      transparent 58%,
+      var(--spark-core) 68%,
+      var(--spark-glow) 76%,
+      var(--spark-core) 84%,
+      transparent 92%,
+      transparent 100%
+    )`,
+                filter: 'blur(4px)',
+                opacity: 1
+              }}
+            />
+
+            {/* Sharp spark line */}
+            <div
+              className='absolute -inset-px rounded-lg pointer-events-none'
+              style={{
+                background: `conic-gradient(
+      from var(--spark-angle, 0deg),
+      transparent 0%,
+      transparent 60%,
+      var(--spark-core) 70%,
+      var(--spark-glow) 77%,
+      var(--spark-core) 84%,
+      transparent 92%,
+      transparent 100%
+    )`,
+                mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                maskComposite: 'exclude',
+                WebkitMaskComposite: 'xor',
+                padding: '2px'
+              }}
+            />
+            <div
+              className='relative bg-white  dark:bg-card-dark shadow-lg dark:shadow-black/40
                    rounded-sm p-8 md:p-12 max-w-xl transition-colors duration-700 '
-          >
-            <Pin />
-            <h1
-              ref={headlineRef}
-              className='font-handwritten text-4xl md:text-5xl text-ink dark:text-ink-dark
+            >
+              <Pin />
+              <h1
+                ref={headlineRef}
+                className='font-handwritten text-4xl md:text-5xl text-ink dark:text-ink-dark
                      mb-4 transition-colors duration-700'
-            >
-              {hero.greeting.replace('👋', '')}
-              <span className='inline-block animate-wave origin-[70%_70%]'>
-                👋
-              </span>
-            </h1>
-            <p
-              ref={taglineRef}
-              className='font-sans text-base md:text-lg text-gray-700 dark:text-text-dark
-                     transition-colors duration-700'
-            >
-              {hero.tagline}
-            </p>
+              >
+                {hero.greeting.replace('👋', '')}
+                <span className='inline-block animate-wave origin-[70%_70%]'>
+                  👋
+                </span>
+              </h1>
+              <p
+                ref={taglineRef}
+                className='font-sans text-base md:text-lg text-gray-700 dark:text-text-dark
+       transition-colors duration-700'
+              >
+                {hero.tagline}
+              </p>
+            </div>
           </div>
 
           <div ref={noteRef}>
@@ -125,10 +190,14 @@ export function Hero () {
               width={300}
               height={300}
             />
+            <p className='font-handwritten text-sm text-ink dark:text-neutral-900 text-center mt-3 flex items-center justify-center gap-1'>
+              {hero.photoCaption}
+              <Heart size={12} className='text-accent fill-accent' />
+            </p>
           </StickyNote>
         </div>
       </div>
-       <ScrollCue />
+      <ScrollCue />
     </div>
   )
 }

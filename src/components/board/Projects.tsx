@@ -79,8 +79,8 @@ export function Projects () {
   }, [])
 
   return (
-    <section ref={sectionRef} className='relative h-screen overflow-hidden scroll-mt-20 '>
-      <span className='absolute top-8 left-8 font-handwritten  text-md tracking-widest  text-ink/60 dark:text-accent-dark/80 uppercase z-20'>
+    <section id="projects" ref={sectionRef} className='relative h-screen overflow-hidden scroll-mt-20  '>
+      <span className='absolute top-8 pt-10 left-8 font-handwritten  text-md tracking-widest  text-ink/60 dark:text-accent-dark/80 uppercase z-20'>
         Projects
       </span>
 
