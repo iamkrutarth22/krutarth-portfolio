@@ -1,6 +1,6 @@
 'use client'
 
-import { useContext, useEffect, useRef } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { hero } from '@/content/site-data'
 import { StickyNote } from '@/components/ui/StickyNote'
 import { Pin } from '@/components/ui/Pin'
@@ -11,6 +11,7 @@ import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 import Image from 'next/image'
 import { ScrollCue } from '../ui/ScrollCue'
 import { Briefcase, MapPin, Heart } from 'lucide-react'
+import { ResumeModal } from './ResumeModal'
 
 const statIconMap = {
   briefcase: Briefcase,
@@ -24,8 +25,8 @@ export function Hero () {
   const taglineRef = useRef<HTMLParagraphElement>(null)
   const noteRef = useRef<HTMLDivElement>(null)
   const noteRef2 = useRef<HTMLDivElement>(null)
-  const buttonRef = useRef<HTMLAnchorElement>(null)
-  const statsRef = useRef<HTMLDivElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
+  const [resumeOpen, setResumeOpen] = useState(false)
 
   const reducedMotion = usePrefersReducedMotion()
 
@@ -164,10 +165,11 @@ export function Hero () {
             </StickyNote>
           </div>
 
-          <a
+          <button
             ref={buttonRef}
-            href={hero.resumeUrl}
-            download
+            // href={hero.resumeUrl}
+            // download
+            onClick={() => setResumeOpen(true)}
             className='mt-6 inline-flex items-center gap-2 bg-accent dark:bg-accent-dark text-white
                    dark:text-card-dark px-5 py-2.5 rounded-full shadow-md hover:scale-105 transition-transform
                    dark:shadow-black/40'
@@ -175,7 +177,7 @@ export function Hero () {
             <Paperclip size={16} />
             Resume
             <Download size={16} />
-          </a>
+          </button>
         </section>
         <div ref={noteRef2} className='max-md:hidden  flex items-center '>
           <StickyNote
@@ -198,6 +200,12 @@ export function Hero () {
         </div>
       </div>
       <ScrollCue />
+      {resumeOpen && (
+        <ResumeModal
+          url={hero.resumeUrl}
+          onClose={() => setResumeOpen(false)}
+        />
+      )}
     </div>
   )
 }

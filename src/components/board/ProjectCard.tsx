@@ -101,7 +101,7 @@ export function ProjectCard({
             <span />
           )}
 
-          {project.demoUrl ? (
+          {project.demoUrl &&
             
              <a href={project.demoUrl}
               target="_blank"
@@ -111,11 +111,7 @@ export function ProjectCard({
             >
               Live Demo →
             </a>
-          ) : (
-            <span className="text-gray-300 dark:text-text-dark/30">
-              Demo coming soon
-            </span>
-          )}
+           }
         </div>
       </div>
     </div>
