@@ -15,11 +15,15 @@ const sans = Inter({
   variable: '--font-sans'
 })
 
+// export const metadata: Metadata = {
+//   title: 'Krutarth — Frontend Developer',
+//   description:
+//     'Frontend-focused Full Stack Developer — React, TypeScript, PostgreSQL'
+// }
 export const metadata: Metadata = {
-  title: 'Krutarth — Frontend Developer',
-  description:
-    'Frontend-focused Full Stack Developer — React, TypeScript, PostgreSQL'
-}
+  title: "Krutarth Haldankar — Software Engineer",
+  description: "Software Engineer with 2+ years of experience building React, Next.js, Node.js and PostgreSQL applications.",
+};
 
 export default function RootLayout ({
   children,
